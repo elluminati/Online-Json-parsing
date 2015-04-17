@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 				
 			// if get respone than set in arraylist
 			detailsArray = (ArrayList<ParseModel>) msg.obj;
+			adapter = new CustomAdapter(getApplicationContext(), detailsArray);
+			list_emp.setAdapter(adapter);
 			} else if (msg.what == InformationParsing.GET_ERROR) {
 				Toast.makeText(getApplicationContext(), "Error in Data fetch",
 						Toast.LENGTH_LONG).show();
@@ -46,9 +48,8 @@ public class MainActivity extends Activity {
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		detailsArray = new ArrayList<>();
 		list_emp = (ListView) findViewById(R.id.lv_walker);
-       	parsing.getData(handler, nameValuePairs, detailsArray);
-		adapter = new CustomAdapter(this, detailsArray);
-		list_emp.setAdapter(adapter);
+       		parsing.getData(handler, nameValuePairs, detailsArray);
+	
 
 	
 	}
